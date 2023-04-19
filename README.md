@@ -32,7 +32,7 @@ Follow As Per Instructions Provided.
 
 Step_1: `Download Project Or Run Following Command To Clone In Replit/OtherPlatforms.`
 ```sh
-git clone --Null--
+git clone https://github.com/StoreVia/grobotcode
 ```
 
 Step_2: `Install Nodejs(v18+) By Website If Already Installed Run Following Command In Terminal.`
