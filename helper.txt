@@ -1,0 +1,1 @@
+pm2_Windows_ExucutionPolicy_Error : "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted"(PoweShell_Admin).
