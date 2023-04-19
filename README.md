@@ -52,7 +52,7 @@ developer_id="Deleveloper/Owner_Id"
 reportlogschannel_id="Reports_Channel_Id"
 client_id="Client_Id"
 privateserver_id="Private_SlashCommands_Server_Id"
-music_iconurl="https://cdn.discordapp.com/attachments/1042676003291533365/1075792273503162489/music_icon.gif"
+music_iconurl="https://cdn.discordapp.com/attachments/1097119944904290359/1097190855359594686/music_icon.gif"
 botname="Bot_Name"
 ```
 
