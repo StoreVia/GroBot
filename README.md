@@ -1,4 +1,4 @@
-# GroBot[v4.0]
+# GroBot[v1.0]
 A StoreVia Product
 ## GroBot[v4.0] Is The A Multifunctional Discord Bot With All In Features
 
