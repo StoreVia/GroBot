@@ -26,7 +26,7 @@ module.exports = class GuildMemberAdd extends Event {
         let color = db.fetch(`welcometextcolor_${member.guild.id}`) || "FFFFFF";
         let avatarcolor = color;
         let backgroundurl = db.fetch(`welcomebg_${member.guild.id}`) || "https://images5.alphacoders.com/112/1123013.jpg";
-        let imagetype = db.fetch(`welcometemplate_${member.guild.id}`)
+        let imagetype = db.fetch(`welcometemplate_${member.guild.id}`) || "two"
 
         if(welcomedmuser === "off"){
             return;

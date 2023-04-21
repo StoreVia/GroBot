@@ -30,7 +30,16 @@ module.exports = class Leave extends Command {
                                     option.setName('deletechannel')
                                         .addChannelTypes(ChannelType.GuildText)
                                         .setDescription('Select Channel')
-                                        .setRequired(true)))),
+                                        .setRequired(true))))
+                .addSubcommandGroup(group =>
+                    group.setName(`text`)
+                        .setDescription(`Edit Leave Message.`)
+                        .addSubcommand(subcommand =>
+                            subcommand.setName(`edit`)
+                                .setDescription(`Edit Leave Message`)))
+                .addSubcommand(subcommand => 
+                    subcommand.setName(`guide`)
+                        .setDescription(`Get Guidence About Setting Leave System`)),
 			usage: 'ping',
 			category: 'Info',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
@@ -38,19 +47,19 @@ module.exports = class Leave extends Command {
 	}
 	async run(client, interaction) {
 
-
+        let subcommand = interaction.options.getSubcommand();
         
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-        if (interaction.options.getSubcommand() === 'set') {
+        if(subcommand === 'set') {
             const channel = interaction.options.getChannel('channel');
             const channelcheck = db.fetch(`leave_${interaction.guild.id}`, channel.id)
 
             if(!channelcheck){
 
-            /////////////////////////////////////
+                /////////////////////////////////////
 
                 const leavenew = new ModalBuilder()
                     .setCustomId('myModalLeaveNew')
@@ -62,12 +71,13 @@ module.exports = class Leave extends Command {
                 const leavenew0 = new ActionRowBuilder().addComponents(leavenew1);
                 leavenew.addComponents(leavenew0);
 
-            /////////////////////////////////////
+                /////////////////////////////////////
 
-                db.set(`welcome_${interaction.guild.id}`, channel.id);
+                db.set(`leave_${interaction.guild.id}`, channel.id);
                 await interaction.showModal(leavenew);
 
             }
+
             if(channelcheck){
 
                 /////////////////////////////////////
@@ -83,8 +93,7 @@ module.exports = class Leave extends Command {
                 leaveold.addComponents(leaveold0);
     
                 /////////////////////////////////////
-
-                db.set(`welcome_${interaction.guild.id}`, channel.id);
+                
                 await interaction.showModal(leaveold);
 
             }
@@ -96,7 +105,24 @@ module.exports = class Leave extends Command {
 
 
 
-//code
+        if(subcommand === "edit"){
+
+            /////////////////////////////////////
+
+            const leavetextedit = new ModalBuilder()
+                .setCustomId('myModalLeaveEditText')
+                .setTitle('Leaving Message Configuration.');
+            const leavetextedit1 = new TextInputBuilder()
+                .setCustomId('text1')
+                .setLabel("Send's This Text When Some One Leave Server.")
+                .setStyle(TextInputStyle.Paragraph);
+            const leavetextedit0 = new ActionRowBuilder().addComponents(leavetextedit1);
+            leavetextedit.addComponents(leavetextedit0);
+
+            /////////////////////////////////////
+
+            await interaction.showModal(leavetextedit);
+        }
 
 
 
@@ -104,7 +130,17 @@ module.exports = class Leave extends Command {
 
 
 
-//code
+        if(subcommand === "delete"){
+            const channel = interaction.options.getChannel('deletechannel');
+            const checkchannel = db.fetch(`leave_${interaction.guild.id}`, channel.id);
+            if(checkchannel){
+                db.delete(`leave_${interaction.guild.id}`, channel.id);
+                await interaction.reply({ content: `> Leaving Message System Was Now Disabled In ${channel}`, ephemeral: true})
+            }
+            if(!checkchannel){
+                await interaction.reply({ content: `> ${channel} Was Not Bounded To Leave System.`, ephemeral: true})
+            }
+        }
 
 
 
@@ -112,19 +148,19 @@ module.exports = class Leave extends Command {
 
 
 
-//code
+        if(subcommand === "guide"){
 
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//code
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+            const embed = new EmbedBuilder()
+                .setTitle(`GroBot Leave System Guide `)
+                .setDescription(`> **Note: **Use \`:emoji_name:\` To Use Emoji In Leave Message,Use \`<a:emoji_name:emoji_id>\` To Use Emoji Gif In Leave Message.`)
+                .setImage(`https://i.imgur.com/aAoLgdQ.png`)
+                .setColor(`${process.env.ec}`)
+                .setFooter({
+                    text: `${client.user.username} - ${process.env.year} ©`,
+                    iconURL: process.env.iconurl
+                })
+            await interaction.deferReply({ ephemeral: true })
+            await interaction.followUp({ embeds: [embed] })
+        }
 	}
 };

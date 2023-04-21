@@ -19,7 +19,7 @@ module.exports = class ReadyEvent extends Event {
 				"/help | grobot.store",
 				`/help | ${client.guilds.cache.size} Servers`,
 				`/help | ${client.users.cache.size} Users`,
-				`/help | 80 Commands`
+				`/help | 76 Commands`
 			]
 			client.user.setPresence({
 				activities: [{ name: `${status[Math.floor(Math.random() * status.length)]}`, type: ActivityType.Playing }]

@@ -80,17 +80,8 @@ module.exports = class Welcome extends Command {
 	}
 	async run(client, interaction) {
 
+        let subcommand = interaction.options.getSubcommand();
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        const channel = interaction.options.getChannel('channel');
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        
-        
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if(!interaction.memberPermissions.has(PermissionsBitField.Flags.ManageGuild)){
@@ -101,7 +92,7 @@ module.exports = class Welcome extends Command {
 
 
 
-        if (interaction.options.getSubcommand() === 'set') {
+        if (subcommand === 'set') {
 
             const channel = interaction.options.getChannel('channel');
             const channelcheck = db.fetch(`welcome_${interaction.guild.id}`, channel.id)
@@ -153,12 +144,12 @@ module.exports = class Welcome extends Command {
 
 
 
-        if (interaction.options.getSubcommand() === 'delete') {
+        if (subcommand === 'delete') {
             const channel = interaction.options.getChannel('deletechannel');
             const checkchannel = db.fetch(`welcome_${interaction.guild.id}`, channel.id);
             if(checkchannel){
                 db.delete(`welcome_${interaction.guild.id}`, channel.id);
-                await interaction.reply({ content: `> Welcome Was Now Deleted In ${channel}`, ephemeral: true})
+                await interaction.reply({ content: `> Welcome Message System Was Now Disabled In ${channel}`, ephemeral: true})
             }
             if(!checkchannel){
                 await interaction.reply({ content: `> ${channel} Was Not Bounded To Welcome System.`, ephemeral: true})
@@ -171,7 +162,7 @@ module.exports = class Welcome extends Command {
 
 
 
-        if (interaction.options.getSubcommand() === 'background') {
+        if (subcommand === 'background') {
             const background = interaction.options.getString('url');
             const backgoundcheck = db.fetch(`welcomebg_${interaction.guild.id}`)
             if(!backgoundcheck){
@@ -188,22 +179,20 @@ module.exports = class Welcome extends Command {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        if(subcommand === "guide"){
 
-
-        if(interaction.options.getSubcommand() === 'guide'){
             const embed = new EmbedBuilder()
-            .setTitle(`GroBot Welcome System Guide `)
-            .setDescription(`> **Note: **Use \`:emoji_name:\` To Use Emoji In Welcome Message,Use \`<a:emoji_name:emoji_id>\` To Use Emoji Gif In Welcome Message & This Message Also Inlcudes For Dm Messages.`)
-            .addFields(
-                { name: `**TEXTS: **`, value:`\`<MemberMention>\`\n\`<MemberCount>\`\n\`<UserName>\`\n\`<UserId>\`\n\`<UserTag>\`\n\`<ServerName>\`\n\`<ServerId>\``, inline: true },
-                { name: `**Functions: **`, value: `\`Mentions In Welcome Text Message.\`\n\`Register MemberCount In Welcome Text Message.\`\n\`Register Username In Welcome Text Message.\`\n\`Register UserId In Welcome Text Message.\`\n\`Register UserTag Count In Welcome Text Message.\`\n\`Register ServerName In Welcome Text Message.\`\n\`Register ServerId In Welcome Text Message.\``, inline: true },
-            )
-            .setColor(`${process.env.ec}`)
-            .setFooter({
-                text: `${client.user.username} - ${process.env.year} ©`,
-                iconURL: process.env.iconurl
-              })
-            await interaction.reply({ embeds: [embed], ephemeral: true})
+                .setTitle(`GroBot Welcome System Guide `)
+                .setDescription(`> **Note: **Use \`:emoji_name:\` To Use Emoji In Welcome Message,Use \`<a:emoji_name:emoji_id>\` To Use Emoji Gif In Welcome Message & This Message Also Inlcudes For Dm Messages.`)
+                .setImage(`https://i.imgur.com/YvxM0bc.png`)
+                .setColor(`${process.env.ec}`)
+                .setFooter({
+                    text: `${client.user.username} - ${process.env.year} ©`,
+                    iconURL: process.env.iconurl
+                })
+            await interaction.deferReply({ ephemeral: true })
+            await interaction.followUp({ embeds: [embed] })
+            
         }
 
 
@@ -212,7 +201,7 @@ module.exports = class Welcome extends Command {
 
 
 
-        if(interaction.options.getSubcommand() === "edit"){
+        if(subcommand === "edit"){
 
             /////////////////////////////////////
 
@@ -238,7 +227,7 @@ module.exports = class Welcome extends Command {
 
 
 
-        if(interaction.options.getSubcommand() === "user"){
+        if(subcommand === "user"){
             const set = interaction.options.getString("set");
             const userdmoncheck = db.fetch(`welcomedm_${interaction.guild.id}`, "on")
             const userdmoffcheck = db.fetch(`welcomedm_${interaction.guild.id}`, "off")
@@ -283,12 +272,12 @@ module.exports = class Welcome extends Command {
 
 
 
-        if(interaction.options.getSubcommand() === "text-edit"){
+        if(subcommand === "text-edit"){
 
             /////////////////////////////////////
 
             const welcomedmuserold = new ModalBuilder()
-			    .setCustomId('myModalDmUserOld')
+			    .setCustomId('myModalDmUserTextEdit')
 			    .setTitle('Welcome System Configuration.');
 		    const welcomedmuserold1 = new TextInputBuilder()
 			    .setCustomId('text3')
@@ -308,7 +297,7 @@ module.exports = class Welcome extends Command {
 
 
 
-        if(interaction.options.getSubcommand() === "color"){
+        if(subcommand === "color"){
 
             /////////////////////////////////////
 
@@ -540,7 +529,7 @@ module.exports = class Welcome extends Command {
 
 
 
-        if(interaction.options.getSubcommand() === "template"){
+        if(subcommand === "template"){
 
             const buttonRow = new ActionRowBuilder()
 			    .addComponents(

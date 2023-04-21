@@ -9,7 +9,7 @@ module.exports = {
     "🎉 **GIVEAWAY ENDED** 🎉",
   drawing:  `Ends: **{timestamp}**`,
   iconURL: `${process.env.iconurl}`,
-  inviteToParticipate: `React with 🎉 to participate!`,
+  inviteToParticipate: `> **React With 🎉 To Participate.**\n`,
   winMessage: "> Congratulations🎉, {winners}. You won **{this.prize}**.",
   embedFooter: `GroBot - ${process.env.year} ©`,
   noWinner: "Giveaway Cancelled Due To No Valid Participations.",

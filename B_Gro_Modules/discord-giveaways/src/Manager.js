@@ -98,14 +98,12 @@ class GiveawaysManager extends EventEmitter {
                           ? giveaway.lastChance.content + '\n\n'
                           : '') +
                           giveaway.messages.inviteToParticipate +
-                          '\n' +
-                          giveaway.messages.drawing.replace(
-                              '{timestamp}',
-                              giveaway.endAt === Infinity
-                                  ? giveaway.pauseOptions.infiniteDurationText
-                                  : `<t:${Math.round(giveaway.endAt / 1000)}:R>`
-                          ) +
-                          (giveaway.hostedBy ? '\n' + giveaway.messages.hostedBy : '')
+                          '\n'
+            )
+            .addFields(
+                { name: `Ends:`, value: giveaway.endAt === Infinity? giveaway.pauseOptions.infiniteDurationText: `<t:${Math.round(giveaway.endAt / 1000)}:R>`, inline: true  },
+                { name: `\u200b`, value: `\u200b` , inline:true },
+                { name: `HostedBy:`, value: giveaway.hostedBy, inline: true },
             )
             .setThumbnail(giveaway.thumbnail)
             .setImage(giveaway.image);

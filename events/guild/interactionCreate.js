@@ -71,11 +71,32 @@ module.exports = class InteractionCreate extends Event {
 				db.set(`welcomedmtext_${interaction.guild.id}`, text2)
 			})
 		}
-		if(interaction.customId === 'myModalDmUserOld') {
+		if(interaction.customId === 'myModalDmUserTextEdit') {
 			await interaction.reply({ content: `> Done✅. User Dm Text Message Was Now Updated.`, ephemeral: true })
 			.then(() => {
 				const text3 = interaction.fields.getTextInputValue('text3');
 				db.set(`welcomedmtext_${interaction.guild.id}`, text3)
+			})
+		}
+		if(interaction.customId === "myModalLeaveNew"){
+			await interaction.reply({ content: `> Done✅. Leave Channel Was Now Set.`, ephemeral: true })
+    		.then(() => {
+      			const text = interaction.fields.getTextInputValue('text');
+      			db.set(`leavetext_${interaction.guild.id}`, text)
+    		})
+		}
+		if(interaction.customId === "myModalLeaveOld"){
+			await interaction.reply({ content: `> Done✅. Leave Channel Was Now Updated.`, ephemeral: true })
+			.then(() => {
+				const text = interaction.fields.getTextInputValue('text');
+				db.set(`leavetext_${interaction.guild.id}`, text)
+			})
+		}
+		if(interaction.customId === "myModalLeaveEditText"){
+			await interaction.reply({ content: `> Done✅. User Leave Text Was Now Updated.`, ephemeral: true })
+			.then(() => {
+				const text1 = interaction.fields.getTextInputValue('text1');
+				db.set(`leavetext_${interaction.guild.id}`, text1)
 			})
 		}
 //welcomeend
