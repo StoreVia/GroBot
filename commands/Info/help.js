@@ -24,6 +24,11 @@ module.exports = class Help extends Command {
 					.setMaxValues(1)
 					.setOptions([
 						{
+							label: 'Discord Activities',
+							value: 'activities',
+							emoji: '🎮',
+						},
+						{
 							label: 'Akinator',
 							value: 'akinator',
 							emoji: '🧞',
@@ -62,6 +67,11 @@ module.exports = class Help extends Command {
 							label: 'Info',
 							value: 'info',
 							emoji: '🌐',
+						},
+						{
+							label: 'Ticket',
+							value: 'ticket',
+							emoji: '🎫',
 						},
 						{
 							label: 'Truth Or Dare',
@@ -122,40 +132,56 @@ module.exports = class Help extends Command {
 			const selected = i.values[0];
 
 			if (i.customId === 'hlpcmd') {
+				let activities = ["`/activity`",]
+				let activitiesdata = activities.join(", ");
+
 				let akinator = ["`/akinator`",]
 				let akinatordata = akinator.join(", ");
 
 				let chatbot = ["`/chatbot set`", "`/chatbot delete`"]
 				let chatbotdata = chatbot.join(", ");
 
-				let covid = ["`/covid all`"]
-				let coviddata = covid.join(", ");
-
-				let fun = ["`/catsay`", "`/dice`", "`/fliptext`", "`/gif`",  "`/howgay`", "`/hug`", "`/kill`", "`/meme`", "`/nitro`"]
+				let fun = ["`/ascii`", "`/catsay`", "`/dice`", "`/fliptext`", "`/gif`",  "`/howgay`", "`/hug`", "`/kill`", "`/meme`", "`/nitro`", "`/roast`", "`/vaportext`"]
 				let fundata = fun.join(", ");
 
-				let games = ["`/8ball`", "`/2048`", "`/flood`", "`/hangman`", "`/matchpairs`", "`/rockpapersissors`", "`/slots`", "`/snake`", "`/tictactoe`","`/trivia`","`/wouldyourather`" ]
+				let games = ["`/8ball`", "`/2048`", "`/catchthefish`", "`/flood`", "`/hangman`", "`/matchpairs`", "`/minesweeper`", "`/rockpapersissors`", "`/slots`", "`/snake`", "`/tictactoe`", "`/trivia`", "`/wordle`", "`/wouldyourather`" ]
 				let gamesdata = games.join(", ");
 
-				let giveaway = ["`/giveaway create`", "`/giveaway delete`", "`/giveaway edit`", "`/giveaway pause`", "`/giveaway resume`"]
+				let giveaway = ["`/giveaway create`", "`/giveaway delete`", "`/giveaway edit`", "`/giveaway pause`", "`/giveaway resume`" , "`/giveaway reroll`", "`/giveaway end`"]
 				let giveawaydata = giveaway.join(", ");
 
 				let image = ["`/image filter`", "`/image youtube`"]
 				let imagedata = image.join(", ");
 
-				let info = ["`/avatar`", "`/botinfo`", "`/help`", "`/invite`", "`/membercount`", "`/ping`", "`/userinfo`"]
+				let info = ["`/avatar`", "`/botinfo`", "`/help`", "`/invite`", "`/membercount`", "`/ping`", "`/report`", "`/updates`", "`/userinfo`"]
 				let infodata = info.join(", ");
+
+				let ticket = ["`/ticket setup`", "`/ticket send panel`", "`/ticket edit channel`", "`/ticket edit category`", "`/ticket edit logs`", "`/ticket role`"]
+				let ticketdata = ticket.join("\n");
 
 				let tod = ["`/truth`", "`/dare`", "`/truthordare`"]
 				let toddata = tod.join(", ");
 
-				let utility = ["`/fact`", "`/translate`", "`/reminder`"]
+				let utility = ["`/covid all`", "`/fact`", "`/google`", "`/translate`", "`/reminder`", "`/wikipedia`"]
 				let utilitydata = utility.join(", ");
 
-				let welcome = ["`/welcome guide`", "`/welcome set`", "`/welcome delete`", "`/welcome text edit`", "`/welcome background`", "`/welcome dm user`", "`/welcome dm-user text-edit`"]
-				let welcomedata = welcome.join(", ");
+				let welcome = ["`/welcome guide`", "`/welcome channel set`", "`/welcome template`", "`/welcome dm user`", "`/welcome text edit`", "`/welcome background`", "`/welcome text color`", "`/welcome channel delete`", "`/welcome dm-user text-edit`"]
+				let leave = ["`/leave guide`", "`/leave channel set`", "`/leave channel delete`", "`/leave text edit`"]
+				let welcomedata = welcome.join("\n");
+				let leavedata = leave.join("\n");
 
 
+				if(selected === `activities`){
+					let activitiesembed = new EmbedBuilder()
+						.setTitle(`Activities Commands Of ${client.user.username}`)
+						.setDescription(`${activitiesdata}`)
+						.setFooter({
+							text: `${client.user.username} - ${process.env.year} ©`, 
+							iconURL: process.env.iconurl
+						})
+  						.setColor(`${process.env.ec}`);
+  					await i.update({ embeds: [activitiesembed]})
+				}
 
 				if(selected === `akinator`){
 					let akinatorembed = new EmbedBuilder()
@@ -179,18 +205,6 @@ module.exports = class Help extends Command {
 						})
   						.setColor(`${process.env.ec}`);
   					await i.update({ embeds: [chatbotembed]})
-				}
-
-				if(selected === `covid`){
-					let funembed = new EmbedBuilder()
-						.setTitle(`Covid Commands Of ${client.user.username}`)
-						.setDescription(`${coviddata}`)
-						.setFooter({
-							text: `${client.user.username} - ${process.env.year} ©`, 
-							iconURL: process.env.iconurl
-						})
-  						.setColor(`${process.env.ec}`);
-  					await i.update({ embeds: [funembed]})
 				}
 
 				if(selected === `fun`){
@@ -253,6 +267,18 @@ module.exports = class Help extends Command {
   					await i.update({ embeds: [infoembed]})
 				}
 
+				if(selected === `ticket`){
+					let ticketembed = new EmbedBuilder()
+						.setTitle(`Ticket Commands Of ${client.user.username}`)
+						.setDescription(`${ticketdata}`)
+						.setFooter({
+							text: `${client.user.username} - ${process.env.year} ©`, 
+							iconURL: process.env.iconurl
+						})
+  						.setColor(`${process.env.ec}`);
+  					await i.update({ embeds: [ticketembed]})
+				}
+
 				if(selected === `tod`){
 					let todembed = new EmbedBuilder()
 						.setTitle(`Truth Or Dare Commands Of ${client.user.username}`)
@@ -280,7 +306,7 @@ module.exports = class Help extends Command {
 				if(selected === `welcome`){
 					let welcomeembed = new EmbedBuilder()
 						.setTitle(`Welcome Commands Of ${client.user.username}`)
-						.setDescription(`${welcomedata}`)
+						.setDescription(`**Welcome: **\n${welcomedata}\n\n**Leave: **\n${leavedata}`)
 						.setFooter({
 							text: `${client.user.username} - ${process.env.year} ©`, 
 							iconURL: process.env.iconurl

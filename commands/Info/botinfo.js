@@ -42,7 +42,7 @@ module.exports = class Botinfo extends Command {
                 { name: '**:ping_pong: Ping: **', value: `> ┕\`${Math.round(client.ws.ping)}ms\``, inline: true },
             	{ name: '**🏠 Guilds: **', value: `> ${client.guilds.cache.size}`,inline: true },
              	{ name: '**👥 Users: **', value: `> ${client.users.cache.size}`, inline: true },
-            	{ name: '**🤖 Total Commands: **', value: `> ${client.commands.size} Cmds`, inline: true },
+            	{ name: '**🤖 Total Commands: **', value: `> ${process.env.commands_count} Cmds`, inline: true },
 				{ name: '**🤖 Version: **', value: `\`\`\`> v${version}\`\`\``,inline: true },
             )
             .setColor(`${process.env.ec}`)
