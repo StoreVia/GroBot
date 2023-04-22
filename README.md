@@ -54,7 +54,7 @@ client_id="Client_Id"
 privateserver_id="Private_SlashCommands_Server_Id"
 music_iconurl="https://cdn.discordapp.com/attachments/1097119944904290359/1097190855359594686/music_icon.gif"
 botname="Bot_Name"
-command_count="76"
+commands_count="76"
 ```
 
 Step_3: `Use Following Command In Terminal.`
