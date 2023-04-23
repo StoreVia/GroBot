@@ -101,6 +101,16 @@ module.exports = class InteractionCreate extends Event {
 		}
 //welcomeend
 
+//privateslashstart
+		if(interaction.customId === "myUpdate"){
+			await interaction.reply({ content: `> Done✅. Update Text To Database.`, ephemeral: true })
+			.then(() => {
+				const text = interaction.fields.getTextInputValue('text');
+				db.set(`update`, text)
+			})
+		}
+//privateslashend
+
 //ticketstart
 		if(interaction.customId === 'ticketopen') {
 			const role = db.fetch(`ticketrole_${interaction.guild.id}`)

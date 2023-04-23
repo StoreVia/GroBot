@@ -39,11 +39,6 @@ module.exports = class Help extends Command {
 							emoji: '🤖',
 						},
 						{
-							label: 'Covid',
-							value: 'covid',
-							emoji: '🦠',
-						},
-						{
 							label: 'Fun',
 							value: 'fun',
 							emoji: '🎯',

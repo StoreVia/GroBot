@@ -16,7 +16,7 @@ module.exports = class Updates extends Command {
 	}
 	async run(client, interaction) {
 
-        const update = db.fetch(`update`) || null;
+        const update = db.fetch(`update`) || "Null";
 
 		await interaction.deferReply();
 		let embed = new EmbedBuilder()
