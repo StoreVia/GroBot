@@ -104,7 +104,7 @@ module.exports = class Image extends Command {
             const youtubeuseravatar = UserOption.displayAvatarURL({ extension: 'png' });
             const youtubeusername = UserOption.username;
             const comment = interaction.options.getString(`text`);
-            return await interaction.followUp({ files : [{ attachment: `https://some-random-api.ml/canvas/youtube-comment?avatar=${youtubeuseravatar}&username=${youtubeusername}&comment=${comment}`, name: 'image.png' }]});
+            return await interaction.followUp({ files : [{ attachment: `https://some-random-api.com/canvas/youtube-comment?avatar=${youtubeuseravatar}&username=${youtubeusername}&comment=${comment}`, name: 'image.png' }]});
         }
 	}
 };
