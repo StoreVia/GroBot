@@ -23,7 +23,7 @@ module.exports = class Ping extends Command {
     await interaction.deferReply();
     const string = interaction.options.getUser(`user`);
 
-    fetch(`https://some-random-api.ml/animu/hug`)
+    fetch(`https://some-random-api.com/animu/hug`)
       .then((res) => res.json())
 		  .then((data) => {
         const link = data.link;
