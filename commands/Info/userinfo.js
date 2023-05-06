@@ -62,7 +62,7 @@ module.exports = class Userinfo extends Command {
                 { name: '**Roles: **', value: `> ${target.roles.cache.map(r => r).join(' ').replace("@everyone", "") || "NONE"}`, inline: true },
                 { name: '**Discord User Since: **', value: `\`\`\`> ${moment(mentionedMember.createdAt).format(`DD-MM-YYYY`)}\`\`\``,inline: true },
                 { name: '**Server Joined: **', value: `\`\`\`> ${moment(mentionedMember1.joinedAt).format(`DD-MM-YYYY`)}\`\`\``, inline: true },
-		        { name: '**Flages: **', value: `\`\`\`> ${flog.join('\n> ') || 'None'}\`\`\``, inline: false },
+                { name: '**Flages: **', value: `\`\`\`> ${flog || 'None'}\`\`\``, inline: false },
 	        )
             .setFooter({
                 text: `${client.user.username} - ${process.env.year} ©`, 
