@@ -60,7 +60,7 @@ module.exports = class Image extends Command {
 
             if(StringOption == "img_gay"){
                 const gay_user = UserOption.displayAvatarURL({ extension: 'png' });
-                return await interaction.followUp({ files : [{ attachment: `https://some-random-api.ml/canvas/Gay?avatar=${gay_user}`, name: 'image.png' }]});
+                return await interaction.followUp({ files : [{ attachment: `https://some-random-api.com/canvas/Gay?avatar=${gay_user}`, name: 'image.png' }]});
             }
 
             if(StringOption == "img_greyscale"){

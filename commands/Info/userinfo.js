@@ -1,6 +1,7 @@
 const Command = require('../../structures/CommandClass');
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder, Formatters } = require('discord.js');
 const moment = require('moment');
+const formattor = new Intl.ListFormat(`en-GB`, { style: `narrow`, type: `conjunction` })
 
 module.exports = class Userinfo extends Command {
 	constructor(client) {
@@ -35,34 +36,32 @@ module.exports = class Userinfo extends Command {
             VerifiedDeveloper: 'Verified Developer',
             ActiveDeveloper: 'Active Developer'
         };
-
+        
         let UserOption = interaction.options.getUser('user') || interaction.user;
-        let mentionedMember = UserOption;
         let UserOption1 = interaction.options.getMember('user') || interaction.member;
-        let mentionedMember1 = UserOption1;
-        let userFlags = mentionedMember.flags.toArray();
-        let flog = userFlags.map(flags => flag[flags]);
-
         let target = await interaction.guild.members.fetch(UserOption.id)
+        let userFlags = UserOption.flags.toArray();
+        let filteredFlags = userFlags.filter(f => f in flag);
+		let flog = filteredFlags.length ? formattor.format(filteredFlags.map(flags => flag[flags])) : "None" ;
 
         const userEmbed = new EmbedBuilder()
             .setAuthor({ 
-                name: `${mentionedMember.tag}`, 
-                iconURL: mentionedMember.displayAvatarURL({dynamic: true, size: 2048})
+                name: `${UserOption.tag}`, 
+                iconURL: UserOption.displayAvatarURL({dynamic: true, size: 2048})
             })
-            .setTitle(`Userinfo of \`${mentionedMember.username}\``) 
-            .setThumbnail(mentionedMember.displayAvatarURL({dynamic: true}))
+            .setTitle(`Userinfo of \`${UserOption.username}\``) 
+            .setThumbnail(UserOption.displayAvatarURL({dynamic: true}))
             .setColor(`${process.env.ec}`)
             .addFields(
-		        { name: '**Username: **', value: `> ${mentionedMember.username}`, inline: true },
-		        { name: '**Tag: **', value: `> #${mentionedMember.discriminator}`,inline: true },
-		        { name: '**ID: **', value: `> ${mentionedMember.id}`, inline: true },       
-                { name: '**Avatar: **', value: `> [ClickHere](${mentionedMember.displayAvatarURL({ size: 4096, dynamic: true, format: "png" })})`,inline: true },
-                { name: '**Bot: **', value: `> ${mentionedMember.bot ? "\`✔️\`" : "\`❌\`"}`, inline: true },
-                { name: '**Roles: **', value: `> ${target.roles.cache.map(r => r).join(' ').replace("@everyone", "") || "NONE"}`, inline: true },
-                { name: '**Discord User Since: **', value: `\`\`\`> ${moment(mentionedMember.createdAt).format(`DD-MM-YYYY`)}\`\`\``,inline: true },
-                { name: '**Server Joined: **', value: `\`\`\`> ${moment(mentionedMember1.joinedAt).format(`DD-MM-YYYY`)}\`\`\``, inline: true },
-                { name: '**Flages: **', value: `\`\`\`> ${flog || 'None'}\`\`\``, inline: false },
+		        { name: '**Username: **', value: `> ${UserOption.username}`, inline: true },
+		        { name: '**Tag: **', value: `> #${UserOption.discriminator}`,inline: true },
+		        { name: '**ID: **', value: `> ${UserOption.id}`, inline: true },       
+                { name: '**Avatar: **', value: `> [ClickHere](${UserOption.displayAvatarURL({ size: 4096, dynamic: true, format: "png" })})`,inline: true },
+                { name: '**Bot: **', value: `> ${UserOption.bot ? "\`✅\`" : "\`❌\`"}`, inline: true },
+                { name: '**Roles: **', value: `> ${target.roles.cache.map(r => r).join(' ').replace("@everyone", "") || "NONE"}`, inline: false },
+                { name: '**Discord User Since: **', value: `\`\`\`> ${moment(UserOption.createdAt).format(`DD-MM-YYYY`)}\`\`\``,inline: true },
+                { name: '**Server Joined: **', value: `\`\`\`> ${moment(UserOption1.joinedAt).format(`DD-MM-YYYY`)}\`\`\``, inline: true },
+                { name: '**Flages: **', value: `\`\`\`> ${flog.replace(`, `, `\n> `)}\`\`\``, inline: false },
 	        )
             .setFooter({
                 text: `${client.user.username} - ${process.env.year} ©`, 
