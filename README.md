@@ -18,7 +18,7 @@ A StoreVia Product
 - Welcome_Leave System.
 
 #### Developer_Features:
-- Private Slash Commands
+- Private Slash Commands.
 
 ## Installtion Guide
 
