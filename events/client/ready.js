@@ -17,9 +17,6 @@ module.exports = class ReadyEvent extends Event {
 		setInterval(()=>{
 			let status = [
 				"/help | grobot.store",
-				`/help | ${client.guilds.cache.size} Servers`,
-				`/help | ${client.users.cache.size} Users`,
-				`/help | ${process.env.commands_count} Commands`
 			]
 			client.user.setPresence({
 				activities: [{ name: `${status[Math.floor(Math.random() * status.length)]}`, type: ActivityType.Playing }]

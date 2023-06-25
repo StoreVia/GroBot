@@ -41,7 +41,7 @@ module.exports = class Botinfo extends Command {
                 { name: '**✉️ Invite Me : **', value: `> [inviteMe](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands)`, inline: true },
                 { name: '**:ping_pong: Ping: **', value: `> ┕\`${Math.round(client.ws.ping)}ms\``, inline: true },
             	{ name: '**🏠 Guilds: **', value: `> ${client.guilds.cache.size}`,inline: true },
-             	{ name: '**👥 Users: **', value: `> ${client.users.cache.size}`, inline: true },
+             	{ name: '**👥 Users: **', value: `> ${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)}`, inline: true },
             	{ name: '**🤖 Total Commands: **', value: `> ${process.env.commands_count} Cmds`, inline: true },
 				{ name: '**🤖 Version: **', value: `\`\`\`> v${version}\`\`\``,inline: true },
             )

@@ -14,13 +14,19 @@ module.exports = class Activity extends Command {
                         .setDescription(`Select The Activity You Want To Launch.`)
                         .addChoices(
                             { name: 'Youtube', value: 'youtube' },
-                            { name: 'Letter League(nitro)', value: 'lettertile' },
-                            { name: 'Putt Party(nitro)', value: 'puttparty' },
-                            { name: 'Poker Night(nitro)', value: 'poker' },
-                            { name: 'Sketch Heads(nitro)', value: 'sketchheads' },
-                            { name: 'Chess(nitro)', value: 'chess' },
-                            { name: 'SpellCast(nitro)', value: 'spellcast' },
-                            { name: 'Checkers(nitro)', value: 'checkers' },
+                    		{ name: 'Poker Night', value: 'poker' },
+                    		{ name: 'Jamspace', value: 'jamspace' },
+							{ name: 'Putt Party', value: 'puttparty' },
+                    		{ name: 'Gartic Phone', value: 'garticphone' },
+                    		{ name: 'Know What I Meme', value: 'kwim' },
+                            { name: 'Chess In The Park', value: 'chess' },
+                            { name: 'Bobble Leauge', value: 'bobble' },
+                            { name: 'Land-io', value: 'landio' },
+                            { name: 'Sketch Heads', value: 'sketchheads' },
+                            { name: 'Blazing 8s', value: 'blazing8' },
+                            { name: 'SpellCast', value: 'spellcast' },
+                            { name: 'Checkers In The Park', value: 'checkers' },
+                            { name: 'Letter League', value: 'lettertile' },
                         )),
 			usage: 'activity',
 			category: 'activity',
@@ -39,15 +45,15 @@ module.exports = class Activity extends Command {
         if(channel) {
             await interaction.deferReply();
             client.discordTogether.createTogetherCode(interaction.member.voice.channel.id, `${activity}`).then(async invite => {
-                const embed = new EmbedBuilder()
-                    .setTitle(`${titlecase(activity)}`)
-                    .setDescription(`[Click Here To Launch ${titlecase(activity)} --- ${interaction.member.voice.channel.name}](${invite.code})\n\n > This Feature Is Not Avilable In Mobile.`)
-                    .setColor(`${process.env.ec}`)
-                    .setFooter({
-                        text: `${client.user.username} - ${process.env.year} ©`, 
-                        iconURL: process.env.iconurl
-                    });
-                interaction.followUp({embeds: [embed]})
+                let embed = new EmbedBuilder()
+                	.setColor(`${process.env.ec}`)
+                	.addFields(
+                    	{ name: `**RequestedBy: **`, value: `${interaction.user}`, inline: true },
+                    	{ name: `\u200b`, value: `\u200b`, inline: true },
+                    	{ name: `**VoiceChannel: **`, value: `${interaction.member.voice.channel}`, inline: true }
+					)
+                interaction.followUp({ embeds: [embed] })
+                interaction.channel.send({content: `${invite.code}`})
             });
         }
 	}
