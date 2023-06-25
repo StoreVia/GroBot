@@ -19,9 +19,6 @@ A StoreVia Product
 
 #### Developer_Features:
 - Private Slash Commands
-- Custom Economy Handling Commands
-- Custom Database Access Command
-- ETC.
 
 ## Installtion Guide
 
