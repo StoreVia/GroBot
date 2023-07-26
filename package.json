@@ -57,6 +57,7 @@
     "opusscript": "^0.0.8",
     "parse-ms-2": "^1.0.0",
     "popcat-wrapper": "^1.5.4",
+    "prettier": "^3.0.0",
     "quick.db": "^7.1.3",
     "simply-djs": "^3.0.2",
     "spud": "^2.0.1",

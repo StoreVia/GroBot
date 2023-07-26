@@ -1,5 +1,5 @@
 # GroBot[v1.0]
-A StoreVia Product
+A StoreVia Product.
 ## GroBot[v1.0] Is The A Multifunctional Discord Bot With All In Features
 
 #### User_Features:
@@ -29,7 +29,7 @@ Follow As Per Instructions Provided.
 
 Step_1: `Download Project Or Run Following Command To Clone In Replit/OtherPlatforms.`
 ```sh
-git clone https://github.com/StoreVia/grobotcode
+git clone https://github.com/StoreVia/grobotcode.git
 ```
 
 Step_2: `Install Nodejs(v18+) By Website If Already Installed Run Following Command In Terminal.`

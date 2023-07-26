@@ -1,38 +1,37 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const client = new Discord.Client();
-const { Snake } = require('../index');
+const { Snake } = require("../index");
 
-
-client.on('messageCreate', async (message) => {
-  if(message.content === '!snake') {
+client.on("messageCreate", async (message) => {
+  if (message.content === "!snake") {
     const Game = new Snake({
       message: message,
       isSlashGame: false,
       embed: {
-        title: 'Snake Game',
-        overTitle: 'Game Over',
-        color: '#5865F2'
+        title: "Snake Game",
+        overTitle: "Game Over",
+        color: "#5865F2",
       },
       emojis: {
-        board: '⬛',
-        food: '🍎',
-        up: '⬆️', 
-        down: '⬇️',
-        left: '⬅️',
-        right: '➡️',
+        board: "⬛",
+        food: "🍎",
+        up: "⬆️",
+        down: "⬇️",
+        left: "⬅️",
+        right: "➡️",
       },
-      stopButton: 'Stop',
+      stopButton: "Stop",
       timeoutTime: 60000,
-      snake: { head: '🟢', body: '🟩', tail: '🟢', over: '💀' },
-      foods: ['🍎', '🍇', '🍊', '🫐', '🥕', '🥝', '🌽'],
-      playerOnlyMessage: 'Only {player} can use these buttons.'
+      snake: { head: "🟢", body: "🟩", tail: "🟢", over: "💀" },
+      foods: ["🍎", "🍇", "🍊", "🫐", "🥕", "🥝", "🌽"],
+      playerOnlyMessage: "Only {player} can use these buttons.",
     });
-    
+
     Game.startGame();
-    Game.on('gameOver', result => {
+    Game.on("gameOver", (result) => {
       console.log(result);
     });
   }
 });
 
-client.login('YOUR_COOL_DISCORD_BOT_TOKEN');
+client.login("YOUR_COOL_DISCORD_BOT_TOKEN");
