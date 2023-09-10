@@ -1,35 +1,33 @@
-const Command = require("../../structures/CommandClass");
-const { SlashCommandBuilder } = require("discord.js");
+const Command = require('../../structures/CommandClass');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = class VaporText extends Command {
-  constructor(client) {
-    super(client, {
-      data: new SlashCommandBuilder()
-        .setName("vaportext")
-        .setDescription("Convert Normal Text To Vapor Text.")
-        .addStringOption((option) =>
-          option
-            .setName(`text`)
-            .setDescription(
-              `Enter Text That You Want To Convert To Vapor Text.`,
-            )
-            .setRequired(true),
-        ),
-      usage: "vaportext",
-      category: "fun",
-      permissions: ["Use Application Commands", "Send Messages", "Embed Links"],
-    });
-  }
-  async run(client, interaction) {
-    await interaction.deferReply();
+	constructor(client) {
+		super(client, {
+			data: new SlashCommandBuilder()
+				.setName('vaportext')
+				.setDescription('Convert Normal Text To Vapor Text.')
+				.addStringOption(option =>
+					option.setName(`text`)
+						.setDescription(`Enter Text That You Want To Convert To Vapor Text.`)
+						.setRequired(true)),
+			usage: 'vaportext',
+			category: 'fun',
+			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+		});
+	}
+	async run(client, interaction) {   
 
-    const args = interaction.options.getString(`text`);
+        await interaction.deferReply();
 
-    let msg = "";
-    for (let i = 0; i < args.length; i++) {
-      msg += args[i].toUpperCase().split("").join(" ") + " ";
-    }
+        const args = interaction.options.getString(`text`);
 
-    return await interaction.followUp({ content: `${msg}` });
-  }
+        let msg = "";
+        for (let i = 0; i < args.length; i++) {
+            msg += args[i].toUpperCase().split("").join(" ") + " ";
+        }
+
+        return await interaction.followUp({ content: `${msg}` })
+        
+	}
 };

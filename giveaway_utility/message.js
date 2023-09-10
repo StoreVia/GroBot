@@ -1,12 +1,13 @@
-const config = require("./config.json");
+const config = require('./config.json');
 
 module.exports = {
   giveaway:
-    (config.everyoneMention ? "@everyone\n\n" : "") + "🎉 **GIVEAWAY** 🎉",
+    (config.everyoneMention ? "@everyone\n\n" : "") +
+    "🎉 **GIVEAWAY** 🎉",
   giveawayEnded:
     (config.everyoneMention ? "@everyone\n\n" : "") +
     "🎉 **GIVEAWAY ENDED** 🎉",
-  drawing: `Ends: **{timestamp}**`,
+  drawing:  `Ends: **{timestamp}**`,
   iconURL: `${process.env.iconurl}`,
   inviteToParticipate: `> **React With 🎉 To Participate.**\n`,
   winMessage: "> Congratulations🎉, {winners}. You won **{this.prize}**.",
@@ -14,5 +15,5 @@ module.exports = {
   noWinner: "Giveaway Cancelled Due To No Valid Participations.",
   hostedBy: "Hosted by: {this.hostedBy}",
   winners: "Winner's",
-  endedAt: `GroBot - ${process.env.year} ©`,
-};
+  endedAt: `GroBot - ${process.env.year} ©`
+}
