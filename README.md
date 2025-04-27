@@ -20,7 +20,7 @@ A StoreVia Product
 #### Developer_Features:
 - Private Slash Commands.
 
-## Installtion Guide
+## Installation Guide
 
 GroBot Requires [Node.js](https://nodejs.org/) v18+ to run.
 
