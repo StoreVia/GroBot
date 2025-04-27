@@ -38,7 +38,7 @@ Step_2: `Install Nodejs(v18+) By Website If Already Installed Run Following Comm
 npm install
 ```
 
-Step_3: `After Installing Package Edit ".env" File According To Your Details.`
+Step_3: `After Installing Packages Edit ".env" File According To Your Details.`
 
 ```sh
 token="Bot_Token"
