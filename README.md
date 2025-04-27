@@ -1,5 +1,7 @@
 # GroBot[v1.0]
-A StoreVia Product
+
+DEVELOPED BY STOREVIA
+
 ## GroBot[v1.0] Is The A Multifunctional Discord Bot With All In Features
 
 #### User_Features:
