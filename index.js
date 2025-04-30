@@ -6,10 +6,9 @@
   \____|_|  \___|\__,_|_|\__|___/                              
 
  * Made By StoreVia Developers
- * Credits :- Professor.#1974 (Discord)
+ * Credits :- mrpan.js (Discord)
  * Version :- v1.0
  * BotName :- GroBot
- * Website :- https://www.grobot.store
 
 */
 
